@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binding.emailTx.getText().toString().isEmpty() || binding.passwordTx.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Fiels cannot be empy", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ошибка", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.emailTx.getText().toString(), binding.passwordTx.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

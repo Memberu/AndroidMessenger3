@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binding.emailTx.getText().toString().isEmpty() || binding.passwordTx.getText().toString().isEmpty() || binding.usernameTx.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Fiels cannot be empy", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ошибка", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.emailTx.getText().toString(), binding.passwordTx.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -41,7 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 HashMap<String, String> userinfo = new HashMap<>();
                                 userinfo.put("email", binding.emailTx.getText().toString());
                                 userinfo.put("username", binding.usernameTx.getText().toString());
-                                userinfo.put("ProfileAvatar", " ");
+                                userinfo.put("profileImage", "");
+                                userinfo.put("chats", "");
                                 FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(userinfo);
 
                                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
